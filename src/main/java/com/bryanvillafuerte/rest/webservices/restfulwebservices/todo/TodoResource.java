@@ -14,6 +14,11 @@ public class TodoResource {
         this.todoService = todoService;
     }
 
+    @GetMapping("/basicauth")
+    public String basicAuthCheck() {
+        return "Success";
+    }
+
     @GetMapping("/users/{username}/todos")
     public List<Todo> retrieveTodos(@PathVariable String username) {
         return todoService.findByUsername(username);
@@ -37,7 +42,7 @@ public class TodoResource {
     }
 
     @PostMapping("/users/{username}/todos")
-    public Todo updateTodo(@PathVariable String username, @RequestBody Todo todo) {
+    public Todo addTodo(@PathVariable String username, @RequestBody Todo todo) {
         return todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), todo.isDone());
     }
 
